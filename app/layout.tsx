@@ -19,8 +19,8 @@ const fontMono = FontMono({
 
 export const metadata: Metadata = {
   title: {
-    default: "HeyGen Streaming Avatar SDK Demo",
-    template: `%s - HeyGen Streaming Avatar SDK Demo`,
+    default: "Streaming Avatar",
+    template: `%s - HeyGen Streaming Avatar`,
   },
   icons: {
     icon: "/heygen-logo.png",
@@ -42,8 +42,8 @@ export default function RootLayout({
   return (
     <html
       suppressHydrationWarning
-      lang="en"
       className={`${fontSans.variable} ${fontMono.variable} font-sans`}
+      lang="en"
     >
       <head />
       <body className={clsx("min-h-screen bg-background antialiased")}>
