@@ -1,4 +1,3 @@
-import { AVATARS, VOICES } from "@/app/lib/constants";
 import {
   Configuration,
   NewSessionData,
@@ -10,9 +9,6 @@ import {
   CardBody,
   CardFooter,
   Divider,
-  Input,
-  Select,
-  SelectItem,
   Spinner,
   Tooltip,
 } from "@nextui-org/react";
@@ -21,6 +17,7 @@ import { useChat } from "ai/react";
 import clsx from "clsx";
 import OpenAI from "openai";
 import { useEffect, useRef, useState } from "react";
+
 import StreamingAvatarTextInput from "./StreamingAvatarTextInput";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -71,7 +68,7 @@ export default function StreamingAvatar() {
           You must follow these guidelines to give the best experience:
           - You must act as you are a real person.
           - Your name is Alex, you are an AI assistant.
-          - You must not use any inappropriate language.
+          - Keep the conversation friendly and professional.
         `,
       },
     ],
@@ -235,7 +232,11 @@ export default function StreamingAvatar() {
         file: audioFile,
       });
       const transcription = response.text;
-      console.log("Transcription: ", transcription);
+
+      if (!transcription.trim()) {
+        return;
+      }
+
       setInput(transcription);
     } catch (error) {
       console.error("Error transcribing audio:", error);
